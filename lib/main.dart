@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/features/auth/views/sign_in.dart';
 import 'package:nilcom/features/home/views/home.dart';
 import 'firebase_options.dart';
@@ -22,6 +23,11 @@ class MyApp extends StatelessWidget {
         title: 'Nilcom',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          scaffoldBackgroundColor: scaffoldBGColor,
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              unselectedItemColor: greyColor,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: bottomNavigationBGColor),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),

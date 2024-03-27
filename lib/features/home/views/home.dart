@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nilcom/bookmark/views/bookmark.dart';
+import 'package:nilcom/browse/views/browse.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/features/dashboard/views/dashboard.dart';
+import 'package:nilcom/features/discover/views/discover.dart';
 import 'package:nilcom/features/profile/views/profile.dart';
+import 'package:nilcom/more/views/more.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,8 +26,10 @@ class _HomeState extends State<Home> {
   }
 
   List<Widget> list = [
-    const Dashboard(),
-    const Profile(),
+    const Discover(),
+    const Browse(),
+    const Bookmark(),
+    const More(),
   ];
 
   @override
@@ -38,11 +44,19 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
               icon: SvgPicture.asset(homeDeActiveSvg),
               activeIcon: SvgPicture.asset(homeActiveSvg),
-              label: 'Home'),
+              label: 'Discover'),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(browseDeActiveSvg),
+              activeIcon: SvgPicture.asset(browseActiveSvg),
+              label: 'Browse'),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(bookmarkDeActiveSvg),
+              activeIcon: SvgPicture.asset(bookmarkActiveSvg),
+              label: 'Bookmark'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(userDeActiveSvg),
               activeIcon: SvgPicture.asset(userActiveSvg),
-              label: 'Profile'),
+              label: 'More'),
         ],
       ),
     );
