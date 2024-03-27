@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1055091207699",
+    "project_id": "nilcom-8fff5",
+    "storage_bucket": "nilcom-8fff5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055091207699:android:3c30cded75c193699c99e6",
+        "android_client_info": {
+          "package_name": "com.example.nilcom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKwIhpvrRSE7e1ZMFW_GECYSKtmgTkPso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
