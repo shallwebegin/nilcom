@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const scaffoldPadding = EdgeInsets.all(15);
 //Vertical
+const vertical20 = EdgeInsets.symmetric(vertical: 20);
 const vertical10 = EdgeInsets.symmetric(vertical: 10);
 const vertical5 = EdgeInsets.symmetric(vertical: 5);
 

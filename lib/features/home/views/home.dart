@@ -4,9 +4,7 @@ import 'package:nilcom/bookmark/views/bookmark.dart';
 import 'package:nilcom/browse/views/browse.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
-import 'package:nilcom/features/dashboard/views/dashboard.dart';
 import 'package:nilcom/features/discover/views/discover.dart';
-import 'package:nilcom/features/profile/views/profile.dart';
 import 'package:nilcom/more/views/more.dart';
 
 class Home extends StatefulWidget {

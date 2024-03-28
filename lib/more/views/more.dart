@@ -6,7 +6,6 @@ import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/features/auth/views/sign_in.dart';
-import 'package:nilcom/features/profile/controller/profile_controller.dart';
 import 'package:nilcom/features/widgets/subtitle_widget.dart';
 import 'package:nilcom/models/user_model.dart';
 import 'package:nilcom/more/controller/more_controller.dart';
@@ -19,7 +18,7 @@ class More extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: FutureBuilder<UserModel>(
-          future: ref.read(profileControllerProvider).getUser(),
+          future: ref.read(moreControllerProvider).getUser(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final userModel = snapshot.data!;
@@ -60,22 +59,24 @@ class More extends ConsumerWidget {
                         title: 'Write an article',
                         leadingAsset: articleSvg,
                       ),
-                      const _MenuItem(
-                        title: "Let's try the coding page!",
-                        leadingAsset: codeSvg,
-                      ),
-                      const _MenuItem(
+                      _MenuItem(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            AppRouteNames.yourArticles,
+                          );
+                        },
                         title: 'Your articles',
                         leadingAsset: articleSvg,
                       ),
-                      const _MenuItem(
-                        title: 'Your code repos',
-                        leadingAsset: codeSvg,
-                      ),
                       const SubtitleWidget(title: 'Profile'),
-                      const _MenuItem(
+                      _MenuItem(
                         title: 'Edit profile',
                         leadingAsset: editProfile,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                              AppRouteNames.editProfile,
+                              arguments: {'currentUser': userModel});
+                        },
                       ),
                       _MenuItem(
                         onTap: () {

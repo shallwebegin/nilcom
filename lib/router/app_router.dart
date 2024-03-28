@@ -6,7 +6,9 @@ import 'package:nilcom/features/auth/views/sign_up_info.dart';
 import 'package:nilcom/features/home/views/home.dart';
 import 'package:nilcom/models/article_model.dart';
 import 'package:nilcom/models/user_model.dart';
+import 'package:nilcom/more/views/edit_profile.dart';
 import 'package:nilcom/more/views/write_article.dart';
+import 'package:nilcom/more/views/your_articles.dart';
 import 'package:nilcom/router/router_names.dart';
 
 class AppRouter {
@@ -41,6 +43,16 @@ class AppRouter {
         final currentUser = arguments['currentUser'] as UserModel;
         return MaterialPageRoute(
           builder: (context) => WriteArticle(currentUser: currentUser),
+        );
+      case AppRouteNames.yourArticles:
+        return MaterialPageRoute(
+          builder: (context) => const YourArticles(),
+        );
+      case AppRouteNames.editProfile:
+        final arguments = settings.arguments as Map<String, dynamic>;
+        final currentUser = arguments['currentUser'] as UserModel;
+        return MaterialPageRoute(
+          builder: (context) => EditProfile(currentUser: currentUser),
         );
 
       default:
