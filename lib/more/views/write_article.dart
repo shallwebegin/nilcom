@@ -136,35 +136,49 @@ class _WriteArticleState extends ConsumerState<WriteArticle> {
                     ),
                   ),
                 ),
-                TextFormField(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please fill the content';
-                    }
-                    return null;
-                  },
-                  style: const TextStyle(fontSize: 17, color: whiteColor),
-                  controller: _titleController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(borderSide: BorderSide.none),
-                      hintText: 'Your title here',
-                      hintStyle: TextStyle(fontSize: 17, color: greyColor)),
-                ),
                 Expanded(
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please fill the content';
-                      }
-                      return null;
-                    },
-                    maxLines: 100,
-                    controller: _contentController,
-                    style: const TextStyle(fontSize: 17, color: whiteColor),
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(borderSide: BorderSide.none),
-                        hintText: 'Your article content here',
-                        hintStyle: TextStyle(fontSize: 17, color: greyColor)),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please fill the content';
+                            }
+                            return null;
+                          },
+                          style:
+                              const TextStyle(fontSize: 17, color: whiteColor),
+                          controller: _titleController,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                              hintText: 'Your title here',
+                              hintStyle:
+                                  TextStyle(fontSize: 17, color: greyColor)),
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please fill the content';
+                              }
+                              return null;
+                            },
+                            maxLines: 100,
+                            controller: _contentController,
+                            style: const TextStyle(
+                                fontSize: 17, color: whiteColor),
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintText: 'Your article content here',
+                                hintStyle:
+                                    TextStyle(fontSize: 17, color: greyColor)),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

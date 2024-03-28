@@ -6,6 +6,7 @@ import 'package:nilcom/browse/controller/browse_controller.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/models/article_model.dart';
+import 'package:nilcom/router/router_names.dart';
 
 class ContentListView extends ConsumerWidget {
   const ContentListView({
@@ -29,80 +30,85 @@ class ContentListView extends ConsumerWidget {
               itemCount: articles.length,
               itemBuilder: (context, index) {
                 final article = articles[index];
-                return Padding(
-                  padding: right5,
-                  child: AspectRatio(
-                    aspectRatio: 14 / 9,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: blueColor,
-                        image: DecorationImage(
-                            image:
-                                CachedNetworkImageProvider(article.coverImg!),
-                            fit: BoxFit.cover),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: all15,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    '${article.content}',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: whiteColor),
-                                  ),
-                                  Text(
-                                    '${article.title}',
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: whiteColor,
+                return GestureDetector(
+                  onTap: () => Navigator.pushNamed(
+                      context, AppRouteNames.article,
+                      arguments: ({'article': article})),
+                  child: Padding(
+                    padding: right5,
+                    child: AspectRatio(
+                      aspectRatio: 14 / 9,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: blueColor,
+                          image: DecorationImage(
+                              image:
+                                  CachedNetworkImageProvider(article.coverImg!),
+                              fit: BoxFit.cover),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: all15,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      '${article.title}',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: whiteColor),
                                     ),
-                                  ),
-                                  Text(
-                                    '${article.views.toString()} views',
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: whiteColor,
+                                    Text(
+                                      '${article.author}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: whiteColor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    DateFormat("dd.MM.y")
-                                        .format(article.createdAt),
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: whiteColor,
+                                    Text(
+                                      '${article.views.toString()} views',
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: whiteColor,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      DateFormat("dd.MM.y")
+                                          .format(article.createdAt),
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: whiteColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: all10,
-                              child: AspectRatio(
-                                aspectRatio: 9 / 16,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                            article.authorImg!),
-                                        fit: BoxFit.cover),
+                            Expanded(
+                              child: Padding(
+                                padding: all10,
+                                child: AspectRatio(
+                                  aspectRatio: 9 / 16,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                              article.authorImg!),
+                                          fit: BoxFit.cover),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
