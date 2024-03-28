@@ -5,9 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
+import 'package:nilcom/features/auth/views/sign_in.dart';
 import 'package:nilcom/features/profile/controller/profile_controller.dart';
 import 'package:nilcom/features/widgets/subtitle_widget.dart';
 import 'package:nilcom/models/user_model.dart';
+import 'package:nilcom/more/controller/more_controller.dart';
+import 'package:nilcom/router/router_names.dart';
 
 class More extends ConsumerWidget {
   const More({super.key});
@@ -48,7 +51,11 @@ class More extends ConsumerWidget {
                         ],
                       ),
                       const SubtitleWidget(title: 'Create content'),
-                      const _MenuItem(
+                      _MenuItem(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRouteNames.writeArticle);
+                        },
                         title: 'Write an article',
                         leadingAsset: articleSvg,
                       ),
@@ -69,7 +76,18 @@ class More extends ConsumerWidget {
                         title: 'Edit profile',
                         leadingAsset: editProfile,
                       ),
-                      const _MenuItem(
+                      _MenuItem(
+                        onTap: () {
+                          ref
+                              .read(moreControllerProvider)
+                              .signOut()
+                              .whenComplete(() => Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignIn(),
+                                  ),
+                                  (route) => false));
+                        },
                         title: 'Sign out',
                         leadingAsset: signOutSvg,
                       ),
@@ -105,7 +123,7 @@ class _MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: vertical5,
         child: Card(

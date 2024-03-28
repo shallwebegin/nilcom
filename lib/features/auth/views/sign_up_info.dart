@@ -5,6 +5,7 @@ import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/features/auth/controller/auth_controller.dart';
 import 'package:nilcom/features/home/views/home.dart';
 import 'package:nilcom/models/user_model.dart';
+import 'package:nilcom/router/router_names.dart';
 
 class SignUpInfo extends StatefulWidget {
   const SignUpInfo({super.key, required this.email});
@@ -38,7 +39,7 @@ class _SignUpInfoState extends State<SignUpInfo> {
             width: double.infinity,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(profileInfoImage),
+                image: AssetImage(signUpContinueImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -48,7 +49,7 @@ class _SignUpInfoState extends State<SignUpInfo> {
             child: Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                color: containerColor,
+                color: scaffoldBGColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -68,7 +69,7 @@ class _SignUpInfoState extends State<SignUpInfo> {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge
-                              ?.copyWith(color: titleColor),
+                              ?.copyWith(color: whiteColor),
                         ),
                       ),
                       Padding(
@@ -83,7 +84,10 @@ class _SignUpInfoState extends State<SignUpInfo> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Name',
+                            hintText: 'Name',
+                            fillColor: whiteColor,
+                            filled: true,
+                            hintStyle: const TextStyle(color: activeColor),
                             border: OutlineInputBorder(
                               borderSide: const BorderSide(color: borderColor),
                               borderRadius: BorderRadius.circular(4),
@@ -102,7 +106,10 @@ class _SignUpInfoState extends State<SignUpInfo> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Surname',
+                            hintText: 'Surname',
+                            fillColor: whiteColor,
+                            filled: true,
+                            hintStyle: const TextStyle(color: activeColor),
                             border: OutlineInputBorder(
                               borderSide: const BorderSide(color: borderColor),
                               borderRadius: BorderRadius.circular(4),
@@ -121,7 +128,10 @@ class _SignUpInfoState extends State<SignUpInfo> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Username',
+                            hintText: 'Username',
+                            fillColor: whiteColor,
+                            filled: true,
+                            hintStyle: const TextStyle(color: activeColor),
                             border: OutlineInputBorder(
                               borderSide: const BorderSide(color: borderColor),
                               borderRadius: BorderRadius.circular(4),
@@ -144,20 +154,17 @@ class _SignUpInfoState extends State<SignUpInfo> {
                                   ref
                                       .read(authControllerProvider)
                                       .storeUserInfoFirebase(userModel)
-                                      .whenComplete(
-                                          () => Navigator.pushAndRemoveUntil(
+                                      .whenComplete(() =>
+                                          Navigator.pushNamedAndRemoveUntil(
                                               context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const Home(),
-                                              ),
+                                              AppRouteNames.home,
                                               (route) => false));
                                 }
                               },
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
-                              color: buttonColor,
+                              color: activeColor,
                               minWidth: double.infinity,
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),

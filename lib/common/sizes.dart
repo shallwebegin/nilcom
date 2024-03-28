@@ -19,3 +19,6 @@ const horizontal5 = EdgeInsets.symmetric(horizontal: 5);
 //Right
 const right10 = EdgeInsets.only(right: 10);
 const right5 = EdgeInsets.only(right: 5);
+
+//Top
+const top10 = EdgeInsets.only(top: 10);

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
+import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/features/auth/controller/auth_controller.dart';
 import 'package:nilcom/features/auth/views/sign_up.dart';
 import 'package:nilcom/features/home/views/home.dart';
+import 'package:nilcom/router/router_names.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -35,7 +37,7 @@ class _SignInState extends State<SignIn> {
             width: double.infinity,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(signInImage),
+                image: AssetImage(signInNewImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,7 +47,7 @@ class _SignInState extends State<SignIn> {
             child: Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                color: containerColor,
+                color: scaffoldBGColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -65,7 +67,7 @@ class _SignInState extends State<SignIn> {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge
-                              ?.copyWith(color: titleColor),
+                              ?.copyWith(color: whiteColor),
                         ),
                       ),
                       Padding(
@@ -80,7 +82,10 @@ class _SignInState extends State<SignIn> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Email',
+                            hintText: 'Email',
+                            fillColor: whiteColor,
+                            filled: true,
+                            hintStyle: const TextStyle(color: activeColor),
                             border: OutlineInputBorder(
                               borderSide: const BorderSide(color: borderColor),
                               borderRadius: BorderRadius.circular(4),
@@ -100,7 +105,10 @@ class _SignInState extends State<SignIn> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Password',
+                            hintText: 'Password',
+                            fillColor: whiteColor,
+                            filled: true,
+                            hintStyle: const TextStyle(color: activeColor),
                             border: OutlineInputBorder(
                               borderSide: const BorderSide(color: borderColor),
                               borderRadius: BorderRadius.circular(4),
@@ -111,7 +119,7 @@ class _SignInState extends State<SignIn> {
                       Consumer(
                         builder: (context, ref, child) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            padding: vertical10,
                             child: MaterialButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
@@ -120,11 +128,11 @@ class _SignInState extends State<SignIn> {
                                       .signInWithEmailAndPassword(
                                           email: _emailController.text,
                                           password: _passwordController.text)
-                                      .then((value) => Navigator.of(context)
-                                              .pushReplacement(
-                                                  MaterialPageRoute(
-                                            builder: (context) => const Home(),
-                                          )));
+                                      .then((value) =>
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              AppRouteNames.home,
+                                              (route) => false));
                                 }
                               },
                               shape: RoundedRectangleBorder(
@@ -167,13 +175,13 @@ class _SignInState extends State<SignIn> {
                               onPressed: () =>
                                   Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => SignUp(),
+                                  builder: (context) => const SignUp(),
                                 ),
                               ),
                               child: const Text(
                                 'Sign Up',
                                 style:
-                                    TextStyle(color: buttonColor, fontSize: 12),
+                                    TextStyle(color: whiteColor, fontSize: 12),
                               ),
                             ),
                           ],

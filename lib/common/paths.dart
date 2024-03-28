@@ -20,6 +20,10 @@ const signInImage = 'assets/images/sign_in.png';
 const signUpImage = 'assets/images/sign_up.png';
 const profileInfoImage = 'assets/images/profile_info.png';
 const bookmarkImage = 'assets/images/bookmark_image.png';
+const profileImage = 'assets/images/profile_image.png';
+const signInNewImage = 'assets/images/sign_in_new.jpeg';
+const signUpNewImage = 'assets/images/sign_up_new.jpeg';
+const signUpContinueImage = 'assets/images/sign_up_continue.jpeg';
 
 //More
 
