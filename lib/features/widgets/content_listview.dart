@@ -1,91 +1,123 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:nilcom/browse/controller/browse_controller.dart';
 import 'package:nilcom/common/colors.dart';
-import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
+import 'package:nilcom/models/article_model.dart';
 
-class ContentListView extends StatelessWidget {
+class ContentListView extends ConsumerWidget {
   const ContentListView({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: right5,
-          child: AspectRatio(
-            aspectRatio: 14 / 9,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: blueColor,
-                image: const DecorationImage(
-                    image: AssetImage(bookmarkImage), fit: BoxFit.cover),
-              ),
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: Padding(
-                      padding: all15,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return StreamBuilder<List<ArticleModel>>(
+        stream: ref.watch(browseControllerProvider).getArticles(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (snapshot.hasData) {
+            List<ArticleModel> articles = snapshot.data!;
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: articles.length,
+              itemBuilder: (context, index) {
+                final article = articles[index];
+                return Padding(
+                  padding: right5,
+                  child: AspectRatio(
+                    aspectRatio: 14 / 9,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: blueColor,
+                        image: DecorationImage(
+                            image:
+                                CachedNetworkImageProvider(article.coverImg!),
+                            fit: BoxFit.cover),
+                      ),
+                      child: Row(
                         children: [
-                          Text(
-                            'Prepare for your first skateboard jump',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: whiteColor),
-                          ),
-                          Text(
-                            'Berke Kartal',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: whiteColor,
+                          Expanded(
+                            child: Padding(
+                              padding: all15,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    '${article.content}',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: whiteColor),
+                                  ),
+                                  Text(
+                                    '${article.title}',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: whiteColor,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${article.views.toString()} views',
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: whiteColor,
+                                    ),
+                                  ),
+                                  Text(
+                                    DateFormat("dd.MM.y")
+                                        .format(article.createdAt),
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: whiteColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Text(
-                            '125,908 views ',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: whiteColor,
-                            ),
-                          ),
-                          Text(
-                            '2 days ago',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: whiteColor,
+                          Expanded(
+                            child: Padding(
+                              padding: all10,
+                              child: AspectRatio(
+                                aspectRatio: 9 / 16,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                            article.authorImg!),
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: all10,
-                      child: AspectRatio(
-                        aspectRatio: 9 / 16,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: blueColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Error'),
+            );
+          } else {
+            return const Center(
+              child: Text('Error'),
+            );
+          }
+        });
   }
 }

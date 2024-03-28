@@ -4,6 +4,7 @@ import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/features/widgets/appbar_with_title.dart';
+import 'package:nilcom/features/widgets/content_listview.dart';
 import 'package:nilcom/features/widgets/subtitle_widget.dart';
 
 class Browse extends StatelessWidget {
@@ -20,89 +21,10 @@ class Browse extends StatelessWidget {
             children: [
               const AppBarWithTitle(title: 'Browse'),
               const SubtitleWidget(title: 'Most Viewed Articles'),
-              Expanded(
-                  flex: 2,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: right5,
-                        child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: blueColor,
-                              image: const DecorationImage(
-                                  image: AssetImage(bookmarkImage),
-                                  fit: BoxFit.cover),
-                            ),
-                            child: Row(
-                              children: [
-                                const Expanded(
-                                  child: Padding(
-                                    padding: all15,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Prepare for your first skateboard jump',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'Berke Kartal',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: whiteColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          '125,908 views ',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: whiteColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          '2 days ago',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: whiteColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: all10,
-                                    child: AspectRatio(
-                                      aspectRatio: 9 / 16,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: blueColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  )),
+              const Expanded(
+                flex: 2,
+                child: ContentListView(),
+              ),
               const SubtitleWidget(title: 'Most Viewed Codes'),
               Expanded(
                   flex: 5,
@@ -120,7 +42,7 @@ class Browse extends StatelessWidget {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    image: DecorationImage(
+                                    image: const DecorationImage(
                                       image: AssetImage(bookmarkImage),
                                       fit: BoxFit.cover,
                                     ),

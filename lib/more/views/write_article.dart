@@ -78,6 +78,7 @@ class _WriteArticleState extends ConsumerState<WriteArticle> {
                           uid: uuid,
                           title: _titleController.text,
                           content: _contentController.text,
+                          coverImg: value,
                           author: '${user.name} ${user.surname}',
                           authorImg: user.profilePhoto!,
                           createdAt: DateTime.now(),
@@ -86,7 +87,8 @@ class _WriteArticleState extends ConsumerState<WriteArticle> {
                           views: 0);
                       ref
                           .read(moreControllerProvider)
-                          .writeArticle(articleModel);
+                          .writeArticle(articleModel)
+                          .then((value) => Navigator.of(context).pop());
                     });
                   }
                 },

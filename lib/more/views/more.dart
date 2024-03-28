@@ -53,8 +53,9 @@ class More extends ConsumerWidget {
                       const SubtitleWidget(title: 'Create content'),
                       _MenuItem(
                         onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRouteNames.writeArticle);
+                          Navigator.of(context).pushNamed(
+                              AppRouteNames.writeArticle,
+                              arguments: {'currentUser': userModel});
                         },
                         title: 'Write an article',
                         leadingAsset: articleSvg,
