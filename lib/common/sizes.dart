@@ -5,7 +5,17 @@ const scaffoldPadding = EdgeInsets.all(15);
 const vertical10 = EdgeInsets.symmetric(vertical: 10);
 const vertical5 = EdgeInsets.symmetric(vertical: 5);
 
+//ALL
+const all15 = EdgeInsets.all(15);
+
+const all10 = EdgeInsets.all(10);
+const all5 = EdgeInsets.all(5);
+
 //Horizontal
 
 const horizontal10 = EdgeInsets.symmetric(horizontal: 10);
 const horizontal5 = EdgeInsets.symmetric(horizontal: 5);
+
+//Right
+const right10 = EdgeInsets.only(right: 10);
+const right5 = EdgeInsets.only(right: 5);

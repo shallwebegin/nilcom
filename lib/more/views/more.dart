@@ -6,6 +6,7 @@ import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/features/profile/controller/profile_controller.dart';
+import 'package:nilcom/features/widgets/subtitle_widget.dart';
 import 'package:nilcom/models/user_model.dart';
 
 class More extends ConsumerWidget {
@@ -46,7 +47,7 @@ class More extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      _title('Create content'),
+                      const SubtitleWidget(title: 'Create content'),
                       const _MenuItem(
                         title: 'Write an article',
                         leadingAsset: articleSvg,
@@ -63,7 +64,7 @@ class More extends ConsumerWidget {
                         title: 'Your code repos',
                         leadingAsset: codeSvg,
                       ),
-                      _title('Profile'),
+                      const SubtitleWidget(title: 'Profile'),
                       const _MenuItem(
                         title: 'Edit profile',
                         leadingAsset: editProfile,
@@ -86,17 +87,6 @@ class More extends ConsumerWidget {
               );
             }
           }),
-    );
-  }
-
-  Padding _title(String title) {
-    return Padding(
-      padding: vertical10,
-      child: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: whiteColor),
-      ),
     );
   }
 }

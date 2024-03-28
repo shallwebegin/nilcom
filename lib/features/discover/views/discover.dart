@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nilcom/common/sizes.dart';
 
 class Discover extends StatelessWidget {
   const Discover({super.key});
@@ -6,9 +7,11 @@ class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Discover'),
-      ),
+      body: SafeArea(
+          child: Padding(
+        padding: scaffoldPadding,
+        child: Column(children: []),
+      )),
     );
   }
 }

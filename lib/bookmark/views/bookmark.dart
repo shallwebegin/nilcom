@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
+import 'package:nilcom/features/widgets/appbar_with_title.dart';
 
 class Bookmark extends StatelessWidget {
   const Bookmark({super.key});
@@ -15,32 +16,19 @@ class Bookmark extends StatelessWidget {
           padding: scaffoldPadding,
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'More',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: whiteColor),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(searchSvg),
-                  ),
-                ],
+              const AppBarWithTitle(
+                title: 'Bookmark',
               ),
               Expanded(
                   child: ListView.builder(
                 itemCount: 15,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: vertical5,
                     child: Row(
                       children: [
                         Expanded(
-                          flex: 4,
+                          flex: 3,
                           child: AspectRatio(
                             aspectRatio: 16 / 9,
                             child: Container(

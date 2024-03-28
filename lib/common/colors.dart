@@ -17,3 +17,6 @@ const greyColor = Color(0xFF808191);
 
 //More
 const activeColor = Color(0xFF6C5ECF);
+
+//Browse
+const blueColor = Color(0xFF0DAABC);
