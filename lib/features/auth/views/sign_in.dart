@@ -5,7 +5,6 @@ import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/common/sizes.dart';
 import 'package:nilcom/features/auth/controller/auth_controller.dart';
 import 'package:nilcom/features/auth/views/sign_up.dart';
-import 'package:nilcom/features/home/views/home.dart';
 import 'package:nilcom/router/router_names.dart';
 
 class SignIn extends StatefulWidget {

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/paths.dart';
 import 'package:nilcom/features/auth/controller/auth_controller.dart';
-import 'package:nilcom/features/home/views/home.dart';
 import 'package:nilcom/models/user_model.dart';
 import 'package:nilcom/router/router_names.dart';
 

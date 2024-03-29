@@ -34,7 +34,7 @@ class Bookmark extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage(bookmarkImage),
                                   fit: BoxFit.cover,
                                 ),

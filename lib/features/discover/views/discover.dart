@@ -50,7 +50,7 @@ class Discover extends ConsumerWidget {
                                     padding: top10,
                                     child: Text(
                                       users.name,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: greyColor, fontSize: 12),
                                     ),
                                   ),

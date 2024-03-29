@@ -3,10 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nilcom/common/colors.dart';
 import 'package:nilcom/common/repository/user_control_repository.dart';
-import 'package:nilcom/features/auth/views/sign_in.dart';
-import 'package:nilcom/features/home/views/home.dart';
 import 'package:nilcom/router/app_router.dart';
-import 'package:nilcom/router/router_names.dart';
 import 'firebase_options.dart';
 
 void main() async {
